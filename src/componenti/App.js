@@ -1,4 +1,3 @@
-//import logo from './logo.svg';
 import '../css/App.css';
 import Login from './Login';
 import Signup from './Signup';
@@ -11,7 +10,7 @@ function App() {
     <Router>
       <div className="App">
         <Navbar />
-        
+
         <Switch>
           <Route exact path='/'>
             <Login />
@@ -27,27 +26,6 @@ function App() {
     </Router>
       
   );
-  
-/*
-  return 
-  (
-    <div className="App">
-      <h1> ciao</h1>
-      <Router>
-        <Switch>
-          <Route exact path='/'>
-            <Login />
-          </Route>
-
-          <Route exact path='/signup'>
-            <Signup />
-          </Route>
-
-        </Switch>
-      </Router>
-    </div>
-  );
-  */
 }
 
 export default App;
