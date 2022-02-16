@@ -9,14 +9,16 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Navbar />
+        
 
         <Switch>
           <Route exact path='/'>
+            <Navbar />
             <Login />
           </Route>
 
           <Route exact path='/signup'>
+            <Navbar />
             <Signup />
           </Route>
 

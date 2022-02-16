@@ -1,0 +1,7 @@
+tsc --outDir ./src/build --jsx react-jsx ./src/typescript/App.tsx #compila il file App.tsx
+
+tsc --outDir ./src/build --jsx react-jsx ./src/typescript/Login.tsx #compila il file Login.tsx
+
+tsc --outDir ./src/build --jsx react-jsx ./src/typescript/Navbar.tsx #compila il file Navbar.tsx
+
+tsc --outDir ./src/build --jsx react-jsx ./src/typescript/Signup.tsx #compila il file Signup.tsx
