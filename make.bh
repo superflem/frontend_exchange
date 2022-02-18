@@ -4,4 +4,12 @@ tsc --outDir ./src/build --jsx react-jsx ./src/typescript/Login.tsx #compila il 
 
 tsc --outDir ./src/build --jsx react-jsx ./src/typescript/Navbar.tsx #compila il file Navbar.tsx
 
+tsc --outDir ./src/build --jsx react-jsx ./src/typescript/NavbarLoggato.tsx #compila il file NavbarLoggato.tsx
+
 tsc --outDir ./src/build --jsx react-jsx ./src/typescript/Signup.tsx #compila il file Signup.tsx
+
+tsc --outDir ./src/build --jsx react-jsx ./src/typescript/Home.tsx #compila il file Home.tsx
+
+tsc --outDir ./src/build --jsx react-jsx ./src/typescript/Soldi.tsx #compila il file Soldi.tsx
+
+tsc --outDir ./src/build --jsx react-jsx ./src/typescript/Deposito.tsx #compila il file Deposito.tsx

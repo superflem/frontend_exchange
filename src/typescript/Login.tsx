@@ -13,17 +13,17 @@ const Login = () => {
         var password = passwordInput.current.value;
 
         password = sha3_512(password); //trasforma la password in un hash di 128 caratteri
-        document.getElementById('password')['value'] = password; 
+        document.getElementById('password')['value'] = password;
     }
 
     return (
         <div className="divLogin">
             <h1>Login</h1>
 
-            <form method='post' action='http://localhost:80/login'>
+            <form action='http://localhost:80/login' method='POST'>
                 <input className='testo' type='text' ref={emailInput} id='email' name='email' placeholder='Email' required /> <br /> <br />
                 <input className='testo' type='password' ref={passwordInput} id='password' name='password' placeholder='Password' required /> <br /> <br />
-                <input id='bottone' type='submit' onClick = {e => handleLoginForm()}/>
+                <input id='bottone' type='submit' onClick={handleLoginForm}/>
             </form>
         </div> 
         
