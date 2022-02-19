@@ -6,9 +6,9 @@ const NavbarLoggato = () => {
         <nav className="navbar">
             <div className="divLink">
                 <Link to='/home' className='link'>Home</Link>
-                <Link to='/deposit' className='link'>Deposito</Link>
-                <Link to='/withdraw' className='link'>Carica</Link>
-                <Link to='/buy' className='link'>Compra</Link>
+                <Link to='/deposit' className='link'>Carica</Link>
+                <Link to='/withdraw' className='link'>Deposito</Link>
+                <Link to='/buy' className='link'>Converti</Link>
                 <Link to='/listTransactions' className='link'>Storico</Link>
                 <Link to='/' className='link'>Logout</Link>
             </div>

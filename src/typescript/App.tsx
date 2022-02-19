@@ -6,6 +6,9 @@ import Home from './Home';
 import NavbarLoggato from './NavbarLoggato';
 import Soldi from './Soldi';
 import Deposito from './Deposito';
+import Withdraw from './Withdraw';
+import Buy from './Buy';
+import ListTransactions from './ListTransactions';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'; //servono per andare in diverse pagine
 
 function App() {
@@ -36,6 +39,24 @@ function App() {
             <NavbarLoggato />
             <Soldi />
             <Deposito />
+          </Route>
+
+          <Route exact path='/withdraw'>
+            <NavbarLoggato />
+            <Soldi />
+            <Withdraw />
+          </Route>
+
+          <Route exact path='/buy'>
+            <NavbarLoggato />
+            <Soldi />
+            <Buy />
+          </Route>
+
+          <Route exact path='/listTransactions'>
+            <NavbarLoggato />
+            <Soldi />
+            <ListTransactions />
           </Route>
 
         </Switch>
