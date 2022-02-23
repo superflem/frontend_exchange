@@ -22,17 +22,21 @@ const Login = () => {
         {
             const richiesta = { //creo la richiesta http
                 headers: {
-                    "Content-Type": "text/plain",
-                    "accept": "application/json"
+                    "Content-Type": "application/json",
+                    "accept": "text/plain",
+                    "Access-Control-Allow-Origin": "*", //serve per la comunicazione client server che stanno in posti diversi
+                    "Access-Control-Allow-Methods": "POST",  
                 },
-                
                 body: JSON.stringify(corpo),
                 method: "POST"
             }
 
-            fetch (url, richiesta).then(data => {return data.text()}) // invio i dati al server
-            .then(res => { //risposta dal server
-                const ricevuto = JSON.parse(res);
+            
+            const risposta = await fetch(url, richiesta);
+            if (risposta.ok) // se è andato tutto ok
+            {
+                const stringa = await risposta.json(); //ricevo la risposta
+                const ricevuto = JSON.parse(stringa); //traduco la stringa in oggetto json
                 if (!ricevuto["isTuttoOk"]) //se c'è un errore lo comunico, altrimenti procedo
                 {
                     alert(ricevuto["token"]);
@@ -41,7 +45,11 @@ const Login = () => {
                 {
                     alert("autenticazione avvenuta");
                 }
-            });
+            }
+            else // se c'è stato qualche errore nella comunicazione
+            {
+                alert("errore nella comunicazione con il server");
+            }
         }catch (err)
         {
             alert(err);
