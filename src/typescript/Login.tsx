@@ -59,6 +59,8 @@ const Login = () => {
         }
         */
 
+        
+        //AXIOS
         const risposta = await axios.post(url, {email: email, password: password, withCredentials: true});
         const oggetto = JSON.parse(risposta.data);
         if (!oggetto["isTuttoOk"]) //se c'è un errore lo comunico, altrimenti procedo
@@ -68,7 +70,12 @@ const Login = () => {
         else //se avviene con successo il login
         {
             alert("autenticazione avvenuta");
+            //axios.post("http://localhost:80/ciaoo", {email: email, password: password, withCredentials: true});
         }
+        
+        //controllo di aver ricevuto il cookie (inutile)
+        const risposta2 = await axios.get("http://localhost:80/ciaoo");
+        alert(risposta2.data);
     }
 
     return (
