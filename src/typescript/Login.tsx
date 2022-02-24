@@ -1,6 +1,8 @@
 import { sha3_512 } from 'js-sha3';
 import { useRef } from 'react';
 import '../css/Form.css';
+import axios from 'axios';
+axios.defaults.withCredentials = true;
 
 const Login = () => {
     //servono per inviare i dati nel form
@@ -16,6 +18,7 @@ const Login = () => {
         password = sha3_512(password); //cifro la password
         const corpo = {email: email, password:password}; //creo l'oggetto json da inviare al server
         
+        /*
         //INVIO I DATI
         e.preventDefault(); //evita di ricaricare la pagina  
         try
@@ -53,6 +56,18 @@ const Login = () => {
         }catch (err)
         {
             alert(err);
+        }
+        */
+
+        const risposta = await axios.post(url, {email: email, password: password, withCredentials: true});
+        const oggetto = JSON.parse(risposta.data);
+        if (!oggetto["isTuttoOk"]) //se c'è un errore lo comunico, altrimenti procedo
+        {
+            alert(oggetto["token"]);
+        }
+        else //se avviene con successo il login
+        {
+            alert("autenticazione avvenuta");
         }
     }
 
