@@ -70,12 +70,14 @@ const Login = () => {
         else //se avviene con successo il login
         {
             alert("autenticazione avvenuta");
+            const link = window.location.href + 'home'; //rimando alla pagina principale di login
+            window.location.replace(link);
             //axios.post("http://localhost:80/ciaoo", {email: email, password: password, withCredentials: true});
         }
         
         //controllo di aver ricevuto il cookie (inutile)
-        const risposta2 = await axios.get("http://localhost:80/ciaoo");
-        alert(risposta2.data);
+        //const risposta2 = await axios.get("http://localhost:80/ciaoo");
+        //alert(risposta2.data);
     }
 
     return (

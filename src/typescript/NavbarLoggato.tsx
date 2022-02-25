@@ -2,6 +2,11 @@ import {Link} from 'react-router-dom'; //se usi link invece di <a href> non pass
 import '../css/NavbarLoggato.css';
 
 const NavbarLoggato = () => {
+
+    const logout = async (e) =>
+    {
+        alert('ciao');
+    }
     return (
         <nav className="navbar">
             <div className="divLink">
@@ -10,7 +15,7 @@ const NavbarLoggato = () => {
                 <Link to='/withdraw' className='link'>Deposito</Link>
                 <Link to='/buy' className='link'>Converti</Link>
                 <Link to='/listTransactions' className='link'>Storico</Link>
-                <Link to='/' className='link'>Logout</Link>
+                <Link to = '/' onClick={logout} className='link'>Logout</Link>
             </div>
         </nav>
     );

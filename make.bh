@@ -8,6 +8,8 @@ tsc --outDir ./src/build --jsx react-jsx ./src/typescript/NavbarLoggato.tsx #com
 
 tsc --outDir ./src/build --jsx react-jsx ./src/typescript/Signup.tsx #compila il file Signup.tsx
 
+tsc --outDir ./src/build --jsx react-jsx ./src/typescript/Loggato.tsx #compila il file Loggato.tsx
+
 tsc --outDir ./src/build --jsx react-jsx ./src/typescript/Home.tsx #compila il file Home.tsx
 
 tsc --outDir ./src/build --jsx react-jsx ./src/typescript/Soldi.tsx #compila il file Soldi.tsx
