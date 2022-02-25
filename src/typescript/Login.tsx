@@ -16,7 +16,7 @@ const Login = () => {
         const email = emailInput.current.value;
         let password = passwordInput.current.value;
         password = sha3_512(password); //cifro la password
-        const corpo = {email: email, password:password}; //creo l'oggetto json da inviare al server
+        const corpo = {email: email, password: password, withCredentials: true}; //creo l'oggetto json da inviare al server
         
         /*
         //INVIO I DATI
@@ -61,7 +61,7 @@ const Login = () => {
 
         
         //AXIOS
-        const risposta = await axios.post(url, {email: email, password: password, withCredentials: true});
+        const risposta = await axios.post(url, corpo);
         const oggetto = JSON.parse(risposta.data);
         if (!oggetto["isTuttoOk"]) //se c'è un errore lo comunico, altrimenti procedo
         {
