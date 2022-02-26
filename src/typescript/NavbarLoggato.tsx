@@ -1,11 +1,14 @@
 import {Link} from 'react-router-dom'; //se usi link invece di <a href> non passi per il server
 import '../css/NavbarLoggato.css';
+import axios from 'axios';
 
 const NavbarLoggato = () => {
 
     const logout = async (e) =>
     {
-        alert('ciao');
+        const url = 'http://localhost:80/logout';
+        const risposta = await axios.post(url);
+        window.location.href = 'http://imac-di-mauro.lan:3000/';
     }
     return (
         <nav className="navbar">

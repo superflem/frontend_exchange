@@ -18,18 +18,19 @@ const Loggato = () => {
 
         if (oggetto["ridirezione"])
         {
-            location.href = 'http://imac-di-mauro.lan:3000/';
-        }
-        //alert(oggetto["isTuttoOk"]);
-
-        if (oggetto["isTuttoOk"]) 
-        {
-            document.getElementById('euro').innerHTML = oggetto["euro"]+" €";
-            document.getElementById('dollari').innerHTML = oggetto["dollari"]+" $";
+            window.location.href = 'http://imac-di-mauro.lan:3000/';
         }
         else
         {
-            alert(oggetto["messaggio"]);
+            if (oggetto["isTuttoOk"]) 
+            {
+                document.getElementById('euro').innerHTML = oggetto["euro"]+" €";
+                document.getElementById('dollari').innerHTML = oggetto["dollari"]+" $";
+            }
+            else
+            {
+                alert(oggetto["messaggio"]);
+            }
         }
     });
 
