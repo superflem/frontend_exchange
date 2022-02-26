@@ -11,37 +11,25 @@ import {useEffect} from 'react';
 
 const Loggato = () => {
 
-        /*
-        const url = "http://localhost:80/verifica";
-        axios.post(url)
-        .then(res => {
-        
-        alert(JSON.parse(res.data)["autenticato"]);
-        /*
-        if (JSON.parse(res.data)["autenticato"])
-        {
-            alert('ok');
-        }
-        else
-        {
-            alert('non va bene');
-        }
-        */
-        
-        
-        //});
-
-    useEffect(async () =>{
-        const url = "http://localhost:80/verifica";
+    useEffect(async () =>{ //una volta caricata la pagina, controllo che il token sia valido e inserisco i valori dei soldi nella pagina html
+        const url = "http://localhost:80/query";
         const risposta = await axios.post(url);
-        //alert(JSON.parse(risposta.data)["autenticato"]);
-        if (risposta.data["autenticato"])
+        const oggetto = JSON.parse(risposta.data);
+
+        if (oggetto["ridirezione"])
         {
-            alert('ok');
+            location.href = 'http://imac-di-mauro.lan:3000/';
+        }
+        //alert(oggetto["isTuttoOk"]);
+
+        if (oggetto["isTuttoOk"]) 
+        {
+            document.getElementById('euro').innerHTML = oggetto["euro"]+" €";
+            document.getElementById('dollari').innerHTML = oggetto["dollari"]+" $";
         }
         else
         {
-            alert('non va bene');
+            alert(oggetto["messaggio"]);
         }
     });
 

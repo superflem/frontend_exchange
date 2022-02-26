@@ -1,15 +1,11 @@
 import '../css/Soldi.css';
 
-const Soldi = () => {
-
-    const euro = "19,50 €";
-    const dollari = "0,60 $";
-    
+const Soldi = () => {    
     return (
         <nav className="navbar">
             <div className="divLink">
-                <label>{euro}</label>
-                <label>{dollari}</label>
+                <label id="euro">0 €</label>
+                <label id="dollari">0 $</label>
             </div>
         </nav>
     );
