@@ -8,7 +8,7 @@ const NavbarLoggato = () => {
     {
         const url = 'http://localhost:80/logout';
         const risposta = await axios.post(url);
-        window.location.href = 'http://imac-di-mauro.lan:3000/';
+        window.location.href = 'http://localhost:3000/';
     }
     return (
         <nav className="navbar">

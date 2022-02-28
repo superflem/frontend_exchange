@@ -18,7 +18,7 @@ const Loggato = () => {
 
         if (oggetto["ridirezione"])
         {
-            window.location.href = 'http://imac-di-mauro.lan:3000/';
+            window.location.href = 'http://localhost:3000/';
         }
         else
         {
