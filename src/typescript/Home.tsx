@@ -1,8 +1,9 @@
 import '../css/Home.css';
 
-const Home = () => {
+const Home = (props) => {
+    const nome = props.nome;
 
-    const nome = "Alex";
+    //const nome = "Alex";
     return (
         <div className="divHome">
             <h1>Benvenuto</h1>

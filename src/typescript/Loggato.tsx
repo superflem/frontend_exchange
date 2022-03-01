@@ -8,8 +8,13 @@ import Buy from './Buy';
 import ListTransactions from './ListTransactions';
 import axios from 'axios';
 import {useEffect} from 'react';
+import {useState} from 'react';
 
 const Loggato = () => {
+    //let nome = '';
+    const [nome, setNome] = useState('');
+    const [euro, setEuro] = useState(0);
+    const [dollari, setDollari] = useState(0);
 
     useEffect(async () =>{ //una volta caricata la pagina, controllo che il token sia valido e inserisco i valori dei soldi nella pagina html
         const url = "http://localhost:80/query";
@@ -18,14 +23,16 @@ const Loggato = () => {
 
         if (oggetto["ridirezione"])
         {
+            alert('Sessione scaduta');
             window.location.href = 'http://localhost:3000/';
         }
         else
         {
             if (oggetto["isTuttoOk"]) 
             {
-                document.getElementById('euro').innerHTML = oggetto["euro"]+" €";
-                document.getElementById('dollari').innerHTML = oggetto["dollari"]+" $";
+                setNome(oggetto["nome"][0].toUpperCase() + oggetto["nome"].slice(1)); //metto la prima lettera maiuscola
+                setEuro(Number(oggetto["euro"]));
+                setDollari(Number(oggetto["dollari"]));
             }
             else
             {
@@ -39,34 +46,27 @@ const Loggato = () => {
     return (
         <Router>
             <div className="loggato">
+                <NavbarLoggato />
+                <Soldi euro={euro} dollari={dollari}/>
+
                 <Switch>
                     <Route exact path='/home'>
-                        <NavbarLoggato />
-                        <Soldi />
-                        <Home />
+                        <Home nome={nome}/>
                     </Route>
 
                     <Route exact path='/deposit'>
-                        <NavbarLoggato />
-                        <Soldi />
                         <Deposito />
                     </Route>
 
                     <Route exact path='/withdraw'>
-                        <NavbarLoggato />
-                        <Soldi />
-                        <Withdraw />
+                        <Withdraw euro={euro} dollari={dollari}/>
                     </Route>
 
                     <Route exact path='/buy'>
-                        <NavbarLoggato />
-                        <Soldi />
-                        <Buy />
+                        <Buy euro={euro} dollari={dollari}/>
                     </Route>
 
                     <Route exact path='/listTransactions'>
-                        <NavbarLoggato />
-                        <Soldi />
                         <ListTransactions />
                     </Route>
                 </Switch>

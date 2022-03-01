@@ -1,8 +1,11 @@
 import '../css/Form.css';
+import {useState} from 'react';
 import axios from 'axios';
-const Buy = () => {
+const Buy = (props) => {
 
-    const max = 32;
+    const euro = props.euro;
+    const dollari = props.dollari;
+    const [max, setMax] = useState(dollari);
 
     const handleLoginForm = async (e) =>
     {
@@ -22,6 +25,7 @@ const Buy = () => {
 
         if (oggetto["ridirezione"])
         {
+            alert('Sessione scaduta');
             window.location.href = 'http://localhost:3000/';
         }
         else
@@ -34,6 +38,18 @@ const Buy = () => {
         }
     }
 
+    function cambiaMassimo(e) //cambio del massimo nella form in base alla valuta selezionata
+    {
+        if (e.target.value == 'EUR')
+        {
+            setMax(euro);
+        }
+        else
+        {
+            setMax(dollari);
+        }
+    }
+
     return (
         <div className="divForm">
             <h1>Converti Valuta</h1>
@@ -41,18 +57,13 @@ const Buy = () => {
             <form id = "form" onSubmit = {handleLoginForm}>
                 <input className='testo' type='number' id='valore' name='valore' placeholder="Valore da convertire nell'altra valuta" min='1' max={max} step="0.01" required/><br /><br />
                 
-                <select id="valuta" name="valuta" form='form'>
+                <select id="valuta" name="valuta" form='form' onChange={cambiaMassimo}>
                     <option value="USD">USD</option>
                     <option value="EUR">EUR</option>
                 </select> <br /> <br />
                 <input id='bottoneInterno' type='submit'/>
             </form>
-
-            
         </div> 
-        
-
-
      );
 }
  
