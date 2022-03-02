@@ -31,8 +31,8 @@ const Loggato = () => {
             if (oggetto["isTuttoOk"]) 
             {
                 setNome(oggetto["nome"][0].toUpperCase() + oggetto["nome"].slice(1)); //metto la prima lettera maiuscola
-                setEuro(Number(oggetto["euro"]));
-                setDollari(Number(oggetto["dollari"]));
+                setEuro(Number(oggetto["euro"]).toFixed(2));
+                setDollari(Number(oggetto["dollari"]).toFixed(2));
             }
             else
             {
