@@ -11,9 +11,29 @@ const ListTransactions = () => {
     const url = "http://localhost:80/listTransactions";
 
     useEffect(async () =>{ //una volta caricata la pagina, controllo che il token sia valido e inserisco i valori dei soldi nella pagina html
-        
-        const risposta = await axios.post(url);
+
+        const posizioneValuta = window.location.href.indexOf('valuta='); //prendo il valore della valuta
+        let valuta = '';
+        if (posizioneValuta != -1)
+        {
+            valuta = window.location.href.slice(posizioneValuta+7, posizioneValuta+5+5);
+        }
+
+        const posizioneData = window.location.href.indexOf('data='); //prendo il valore della data
+        let data = '';
+        if (posizioneData != -1)
+        {
+            data = window.location.href.slice(posizioneData+5, posizioneData+5+10);
+        }
+
+        const corpo = {
+            valuta: valuta,
+            data: data
+        };
+
+        const risposta = await axios.post(url, corpo);
         const oggetto = JSON.parse(risposta.data);
+
 
         if (oggetto["ridirezione"])
         {
@@ -67,6 +87,7 @@ const ListTransactions = () => {
             nuovaTabella = nuovaTabella + '<td>' + lista[i]["quantita_spesa"].toFixed(2) + " " + valutaSpesa + "</td>"; //spesa
             nuovaTabella = nuovaTabella + '<td>' + lista[i]["quantita_comprata"].toFixed(2) + " " + valutaComprata + "</td>"; //comprata
             nuovaTabella = nuovaTabella + '<td>' + giraData(lista[i]["data"]) + "</td>"; //data
+            //nuovaTabella = nuovaTabella + '<td>' + lista[i]["data"] + "</td>"; //data
             nuovaTabella = nuovaTabella + '</tr>';
         }
         setTabella(nuovaTabella);
@@ -79,41 +100,29 @@ const ListTransactions = () => {
 
     const handleLoginForm = async (e) =>
     {
-        e.preventDefault(); //evita di ricaricare la pagina
-
+        e.preventDefault();
         const data = e.target.data.value;
         const valuta = e.target.valuta.value;
 
-        //alert(data+" "+valuta);
-        const corpo = {
-            valuta: valuta,
-            data: data
-        };
-
-        const risposta = await axios.post(url, corpo);
-        const oggetto = JSON.parse(risposta.data);
-
-        if (oggetto["ridirezione"])
+        let nuovaQuery = 'http://localhost:3000/listTransactions';
+        if (data!='' || valuta!='')
         {
-            window.location.href = 'http://localhost:3000/';
-        }
-        else
-        {
-            if (oggetto["isTuttoOk"]) 
+            nuovaQuery = nuovaQuery+'?'
+            if (data!='' && valuta!='')
             {
-                if (oggetto["listaTransizioni"] != '[]')
-                {
-                    //alert(JSON.parse(oggetto).length);
-                    
-                    creaTabella(oggetto["listaTransizioni"]); //creo la tabella 
-                }
+                nuovaQuery = nuovaQuery+'data='+data+'&valuta='+valuta;
+            }
+            else if (data!='')
+            {
+                nuovaQuery = nuovaQuery+'data='+data;
             }
             else
             {
-                alert(oggetto["messaggio"]);
+                nuovaQuery = nuovaQuery+'valuta='+valuta;
             }
         }
-        e.preventDefault();
+
+        window.location.href = nuovaQuery;
     }
 
     return (
