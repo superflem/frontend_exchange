@@ -4,7 +4,7 @@
 
 Nella cartella di root si possono eseguire i seguenti script:
 
-### `npm init`
+### `npm install`
 Installa tutti i moduli necessari per eseguire i file
 
 ### `npm run compila`
